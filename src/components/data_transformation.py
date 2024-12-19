@@ -80,6 +80,11 @@ class DataTransformation:
                     input_feature_train_arr, np.array(target_feature_train_df)
                 ]
                 test_arr = np.c_[input_feature_test_arr, np.array(target_feature_test_df)]
+                # Check if the arrays are 2D
+                assert len(train_arr.shape) == 2, "Training array is not 2D"
+                assert len(test_arr.shape) == 2, "Testing array is not 2D"
+                logging.info(f"train_arr shape: {train_arr.shape}")
+                logging.info(f"test_arr shape: {test_arr.shape}")
                 logging.info(f"Saved preprocessing object.")
                 save_object(
                     file_path=self.data_transformation_config.preprocessor_obj_file_path,
